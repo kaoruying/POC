@@ -1,1 +1,1146 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>POC活力營｜Power of Change</title>
+
+  <style>
+    :root {
+      --orange: #ff6b00;
+      --orange2: #ff8a00;
+      --red: #ff3d2e;
+      --yellow: #ffd93d;
+      --blue: #00a6ff;
+      --navy: #12304a;
+      --text: #18324a;
+      --soft: #fff7df;
+      --white: #ffffff;
+      --gray: #607080;
+      --line: rgba(255, 122, 0, 0.22);
+      --shadow: 0 20px 60px rgba(255, 107, 0, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Noto Sans TC", "Microsoft JhengHei", "PingFang TC", Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.75;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(255, 217, 61, 0.62), transparent 28%),
+        radial-gradient(circle at 88% 12%, rgba(0, 166, 255, 0.22), transparent 26%),
+        radial-gradient(circle at 78% 76%, rgba(255, 107, 0, 0.26), transparent 32%),
+        linear-gradient(180deg, #fffdf5 0%, #fff2cc 36%, #fff8ed 70%, #ffffff 100%);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      overflow: hidden;
+    }
+
+    /* ===== HERO ===== */
+
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      padding: 28px 6vw 80px;
+      display: flex;
+      align-items: center;
+      isolation: isolate;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(255, 250, 231, 0.98) 0%, rgba(255, 246, 217, 0.88) 44%, rgba(255, 246, 217, 0.2) 100%),
+        url("asset/poc-edm.png") center right / cover no-repeat;
+      z-index: -2;
+      filter: saturate(1.2) contrast(1.05) brightness(1.08);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 67% 32%, rgba(255, 217, 61, 0.5), transparent 20%),
+        radial-gradient(circle at 22% 68%, rgba(255, 107, 0, 0.18), transparent 26%),
+        linear-gradient(180deg, transparent 68%, #fff8ed 100%);
+      z-index: -1;
+    }
+
+    .nav {
+      position: absolute;
+      top: 22px;
+      left: 6vw;
+      right: 6vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 5;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: 0.03em;
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background:
+        linear-gradient(135deg, #ffd93d 0 25%, #ff7a00 25% 50%, #ff3d2e 50% 75%, #00a6ff 75%);
+      box-shadow: 0 10px 24px rgba(255, 107, 0, 0.3);
+    }
+
+    .nav-link {
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ff7a00, #ff3d2e);
+      color: #fff;
+      font-weight: 900;
+      box-shadow: 0 12px 26px rgba(255, 107, 0, 0.28);
+      transition: 0.25s;
+    }
+
+    .nav-link:hover {
+      transform: translateY(-3px);
+    }
+
+    .hero-inner {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 52px;
+      align-items: center;
+      padding-top: 72px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      color: var(--orange);
+      font-weight: 1000;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 46px;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--red), var(--yellow));
+    }
+
+    .hero h1 {
+      font-size: clamp(50px, 7vw, 100px);
+      line-height: 1.02;
+      font-weight: 1000;
+      letter-spacing: -0.06em;
+      color: var(--navy);
+      margin-bottom: 18px;
+    }
+
+    .hero h1 span {
+      display: block;
+      margin-top: 12px;
+      font-size: clamp(27px, 3vw, 46px);
+      color: var(--orange);
+      font-family: Georgia, "Times New Roman", serif;
+      font-style: italic;
+      letter-spacing: 0.02em;
+      text-shadow: 0 8px 22px rgba(255, 122, 0, 0.18);
+    }
+
+    .hero-subtitle {
+      font-size: clamp(26px, 3vw, 42px);
+      line-height: 1.35;
+      font-weight: 1000;
+      color: #24384d;
+      margin-bottom: 22px;
+    }
+
+    .hero-subtitle strong {
+      color: var(--red);
+    }
+
+    .hero-copy {
+      max-width: 620px;
+      color: #43576b;
+      font-size: 18px;
+      margin-bottom: 34px;
+      font-weight: 600;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      font-weight: 1000;
+      letter-spacing: 0.04em;
+      transition: 0.25s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #ffd93d 0%, #ff9f00 36%, #ff6b00 68%, #ff3d2e 100%);
+      color: #fff;
+      box-shadow: 0 16px 34px rgba(255, 107, 0, 0.35);
+      animation: pulse 2.8s ease-in-out infinite;
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: var(--orange);
+      border: 2px solid rgba(255, 107, 0, 0.34);
+      box-shadow: 0 12px 28px rgba(255, 107, 0, 0.12);
+    }
+
+    .btn:hover {
+      transform: translateY(-4px);
+    }
+
+    .hero-card {
+      position: relative;
+      justify-self: center;
+      width: min(430px, 100%);
+      border-radius: 30px;
+      overflow: hidden;
+      background: #fff;
+      border: 8px solid #fff;
+      box-shadow:
+        0 24px 70px rgba(255, 107, 0, 0.26),
+        0 0 0 2px rgba(255, 167, 38, 0.24);
+      transform: rotate(1.5deg);
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.35), transparent 32%, rgba(255,217,61,0.22));
+      pointer-events: none;
+    }
+
+    /* ===== COMMON ===== */
+
+    section {
+      padding: 86px 6vw;
+      position: relative;
+    }
+
+    .container {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .section-head {
+      margin-bottom: 38px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      color: var(--orange);
+      font-weight: 1000;
+      letter-spacing: 0.12em;
+    }
+
+    .tag::before {
+      content: "";
+      width: 38px;
+      height: 4px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--red), var(--yellow));
+    }
+
+    .section-title {
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: 1.2;
+      font-weight: 1000;
+      letter-spacing: -0.04em;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+
+    .section-desc {
+      max-width: 780px;
+      color: #5c6f80;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    /* ===== INTRO ===== */
+
+    .intro {
+      background:
+        radial-gradient(circle at 90% 10%, rgba(0, 166, 255, 0.16), transparent 28%),
+        linear-gradient(180deg, #fff8ed 0%, #ffffff 100%);
+    }
+
+    .intro-box {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .quote-card {
+      padding: 42px;
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at top right, rgba(255, 217, 61, 0.55), transparent 38%),
+        linear-gradient(135deg, #ffffff 0%, #fff3d0 100%);
+      border: 2px solid rgba(255, 138, 0, 0.2);
+      box-shadow: var(--shadow);
+    }
+
+    .quote-card h2 {
+      font-size: clamp(30px, 4vw, 50px);
+      line-height: 1.25;
+      color: var(--navy);
+      margin-bottom: 18px;
+      font-weight: 1000;
+    }
+
+    .quote-card p {
+      color: #4a5d70;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .why-card {
+      padding: 34px;
+      border-radius: 34px;
+      background: #ffffff;
+      border: 2px solid rgba(0, 166, 255, 0.16);
+      box-shadow: 0 18px 44px rgba(0, 166, 255, 0.12);
+    }
+
+    .why-card h3 {
+      color: var(--orange);
+      font-size: 26px;
+      margin-bottom: 18px;
+      font-weight: 1000;
+    }
+
+    .why-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .why-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      color: #385064;
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .check {
+      flex: 0 0 30px;
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ffd93d, #ff7a00);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-weight: 1000;
+      box-shadow: 0 8px 18px rgba(255, 122, 0, 0.22);
+    }
+
+    /* ===== POWER ===== */
+
+    .power {
+      background:
+        radial-gradient(circle at 12% 16%, rgba(255, 217, 61, 0.46), transparent 30%),
+        radial-gradient(circle at 86% 70%, rgba(255, 107, 0, 0.18), transparent 30%),
+        linear-gradient(180deg, #ffffff 0%, #fff4cf 100%);
+    }
+
+    .power-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .power-card {
+      position: relative;
+      min-height: 265px;
+      padding: 28px;
+      border-radius: 30px;
+      overflow: hidden;
+      background: #ffffff;
+      border: 2px solid rgba(255, 138, 0, 0.18);
+      box-shadow: 0 18px 48px rgba(255, 107, 0, 0.13);
+      transition: 0.25s;
+    }
+
+    .power-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 80% 12%, rgba(255, 217, 61, 0.45), transparent 34%),
+        linear-gradient(180deg, transparent 55%, rgba(255, 138, 0, 0.08));
+      pointer-events: none;
+    }
+
+    .power-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .power-card:hover {
+      transform: translateY(-8px) scale(1.015);
+      box-shadow: 0 24px 60px rgba(255, 107, 0, 0.24);
+      border-color: rgba(255, 107, 0, 0.42);
+    }
+
+    .num {
+      color: var(--red);
+      font-weight: 1000;
+      font-size: 17px;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    .power-icon {
+      font-size: 42px;
+      margin-bottom: 18px;
+    }
+
+    .power-card h3 {
+      color: var(--orange);
+      font-size: 26px;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      font-weight: 1000;
+    }
+
+    .power-card p {
+      color: #4f6375;
+      font-size: 16px;
+      font-weight: 650;
+    }
+
+    /* ===== JOURNEY ===== */
+
+    .journey {
+      background:
+        radial-gradient(circle at 18% 18%, rgba(0, 166, 255, 0.18), transparent 30%),
+        radial-gradient(circle at 82% 12%, rgba(255, 217, 61, 0.42), transparent 28%),
+        linear-gradient(180deg, #fff4cf 0%, #ffffff 100%);
+    }
+
+    .journey-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .day-card {
+      position: relative;
+      overflow: hidden;
+      padding: 36px;
+      border-radius: 34px;
+      background: #ffffff;
+      border: 2px solid rgba(255, 138, 0, 0.2);
+      box-shadow: var(--shadow);
+    }
+
+    .day-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 9px;
+      background: linear-gradient(90deg, #ff3d2e, #ff8a00, #ffd93d, #00a6ff);
+    }
+
+    .day-label {
+      display: inline-flex;
+      padding: 7px 15px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #fff0b8, #ffe3c2);
+      color: var(--orange);
+      font-weight: 1000;
+      margin-bottom: 18px;
+    }
+
+    .day-card h3 {
+      font-size: 30px;
+      color: var(--navy);
+      margin-bottom: 12px;
+      font-weight: 1000;
+    }
+
+    .day-card p {
+      color: #506477;
+      font-size: 17px;
+      font-weight: 650;
+    }
+
+    .course-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .pill {
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #fff5d6;
+      border: 1px solid rgba(255, 138, 0, 0.22);
+      color: #d95d00;
+      font-weight: 900;
+      font-size: 15px;
+    }
+
+    /* ===== INFO ===== */
+
+    .info {
+      background:
+        radial-gradient(circle at 86% 12%, rgba(255, 107, 0, 0.18), transparent 28%),
+        linear-gradient(180deg, #ffffff 0%, #fffaf0 100%);
+    }
+
+    .info-wrap {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .edm-preview {
+      border-radius: 30px;
+      overflow: hidden;
+      background: #ffffff;
+      border: 8px solid #ffffff;
+      box-shadow: 0 24px 70px rgba(255, 107, 0, 0.22);
+      position: sticky;
+      top: 24px;
+    }
+
+    .info-panel {
+      display: grid;
+      gap: 16px;
+    }
+
+    .info-item {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 18px;
+      padding: 20px 22px;
+      border-radius: 24px;
+      background: #ffffff;
+      border: 2px solid rgba(255, 138, 0, 0.16);
+      box-shadow: 0 12px 30px rgba(255, 107, 0, 0.08);
+    }
+
+    .info-item b {
+      color: var(--orange);
+      font-size: 18px;
+      font-weight: 1000;
+    }
+
+    .info-item span {
+      color: #43586c;
+      font-size: 17px;
+      font-weight: 650;
+    }
+
+    .notice {
+      margin-top: 18px;
+      padding: 22px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #fff0b8, #ffe1c7);
+      border: 2px solid rgba(255, 107, 0, 0.22);
+      color: #9a3b00;
+      font-weight: 900;
+    }
+
+    /* ===== REGISTER ===== */
+
+    .register {
+      background:
+        radial-gradient(circle at 18% 18%, rgba(255, 217, 61, 0.55), transparent 30%),
+        radial-gradient(circle at 78% 30%, rgba(0, 166, 255, 0.18), transparent 30%),
+        linear-gradient(180deg, #fffaf0 0%, #fff0c8 100%);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+
+    .step {
+      padding: 30px;
+      border-radius: 30px;
+      background: #ffffff;
+      border: 2px solid rgba(255, 138, 0, 0.18);
+      box-shadow: 0 18px 46px rgba(255, 107, 0, 0.12);
+      min-height: 220px;
+    }
+
+    .step-no {
+      color: var(--red);
+      font-size: 44px;
+      font-weight: 1000;
+      line-height: 1;
+      margin-bottom: 18px;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .step h3 {
+      color: var(--navy);
+      font-size: 24px;
+      margin-bottom: 12px;
+      font-weight: 1000;
+    }
+
+    .step p {
+      color: #506477;
+      font-weight: 650;
+    }
+
+    .final-cta {
+      text-align: center;
+      padding: 58px 30px;
+      border-radius: 38px;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.72), transparent 38%),
+        linear-gradient(135deg, #ff3d2e 0%, #ff7a00 44%, #ffd93d 100%);
+      border: 6px solid #ffffff;
+      box-shadow: 0 26px 72px rgba(255, 107, 0, 0.28);
+      color: #ffffff;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: 1.18;
+      margin-bottom: 18px;
+      font-weight: 1000;
+      text-shadow: 0 6px 20px rgba(140, 52, 0, 0.22);
+    }
+
+    .final-cta p {
+      color: #fffdf5;
+      font-size: 19px;
+      font-weight: 800;
+      margin-bottom: 28px;
+    }
+
+    .final-cta .btn-primary {
+      background: #ffffff;
+      color: var(--orange);
+      box-shadow: 0 14px 30px rgba(122, 40, 0, 0.2);
+    }
+
+    .footer {
+      padding: 30px 6vw 46px;
+      text-align: center;
+      color: #7a6b52;
+      font-size: 14px;
+      background: #fff0c8;
+      font-weight: 700;
+    }
+
+    .float-cta {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 20;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 22px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ff3d2e, #ff7a00, #ffd93d);
+      color: #ffffff;
+      font-weight: 1000;
+      box-shadow: 0 16px 38px rgba(255, 107, 0, 0.38);
+      transition: 0.25s;
+      animation: pulse 2.8s ease-in-out infinite;
+    }
+
+    .float-cta:hover {
+      transform: translateY(-4px);
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        filter: brightness(1);
+        transform: translateY(0);
+      }
+      50% {
+        filter: brightness(1.08);
+      }
+    }
+
+    /* ===== MOBILE ===== */
+
+    @media (max-width: 980px) {
+      .hero {
+        min-height: auto;
+        padding-top: 90px;
+      }
+
+      .hero::before {
+        background:
+          linear-gradient(180deg, rgba(255, 250, 231, 0.72) 0%, rgba(255, 248, 237, 0.96) 58%, #fff8ed 100%),
+          url("asset/poc-edm.png") center top / cover no-repeat;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .hero-card {
+        width: min(360px, 92vw);
+        transform: rotate(0deg);
+      }
+
+      .intro-box,
+      .journey-grid,
+      .info-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .power-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .edm-preview {
+        position: relative;
+        top: 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        left: 18px;
+        right: 18px;
+      }
+
+      .brand span {
+        display: none;
+      }
+
+      .nav-link {
+        padding: 9px 14px;
+        font-size: 14px;
+      }
+
+      .hero {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 58px;
+      }
+
+      section {
+        padding: 64px 20px;
+      }
+
+      .hero-copy,
+      .section-desc {
+        font-size: 16px;
+      }
+
+      .cta-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .quote-card,
+      .why-card,
+      .day-card,
+      .step {
+        padding: 26px 22px;
+        border-radius: 26px;
+      }
+
+      .power-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .power-card {
+        min-height: auto;
+      }
+
+      .info-item {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+
+      .float-cta {
+        left: 18px;
+        right: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+
+    <a class="float-cta" href="https://reurl.cc/EmZK3g" target="_blank" rel="noopener">
+      立即報名 →
+    </a>
+
+    <header class="hero">
+      <nav class="nav">
+        <div class="brand">
+          <div class="brand-mark"></div>
+          <span>凱基人壽｜業務訓練部</span>
+        </div>
+        <a class="nav-link" href="#register">報名資訊</a>
+      </nav>
+
+      <div class="hero-inner">
+        <div class="hero-text">
+          <div class="eyebrow">POWER OF CHANGE</div>
+
+          <h1>
+            POC活力營
+            <span>Power of Change</span>
+          </h1>
+
+          <div class="hero-subtitle">
+            釋放內在動能，<br />
+            啟動改變的力量。
+          </div>
+
+          <p class="hero-copy">
+            兩天一夜沉浸式課程，從認識自己、建立願景、激發內在動能，到突破自我設限，
+            陪你重新看見自己的價值，帶著更強的信念與能量回到市場。
+          </p>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="https://reurl.cc/EmZK3g" target="_blank" rel="noopener">
+              立即前往 i-study 報名
+            </a>
+            <a class="btn btn-secondary" href="#about">
+              了解課程亮點
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <img src="asset/poc-edm.png" alt="POC活力營 EDM主視覺" />
+        </div>
+      </div>
+    </header>
+
+    <section class="intro" id="about">
+      <div class="container">
+        <div class="intro-box">
+
+          <div class="quote-card">
+            <h2>
+              改變，不是等待機會，<br />
+              而是創造新的可能。
+            </h2>
+            <p>
+              POC活力營不是單純的課程，而是一段重新啟動自己的旅程。
+              讓你在市場挑戰、目標壓力與日常忙碌之中，重新整理狀態，
+              找回相信自己的力量。
+            </p>
+          </div>
+
+          <div class="why-card">
+            <h3>為什麼你該參加？</h3>
+
+            <div class="why-list">
+              <div class="why-item">
+                <div class="check">✓</div>
+                <div>當你想重新點燃行動力，找回面對市場的熱情。</div>
+              </div>
+
+              <div class="why-item">
+                <div class="check">✓</div>
+                <div>當你希望突破目前狀態，不再被自我設限卡住。</div>
+              </div>
+
+              <div class="why-item">
+                <div class="check">✓</div>
+                <div>當你想建立更積極、正面的價值觀，迎接更高挑戰。</div>
+              </div>
+
+              <div class="why-item">
+                <div class="check">✓</div>
+                <div>當你需要一場有團隊支持、有氛圍、有力量的改變旅程。</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="power">
+      <div class="container">
+        <div class="section-head">
+          <div class="tag">四大課程收穫</div>
+          <h2 class="section-title">
+            從內在開始，<br />
+            啟動真正的改變。
+          </h2>
+          <p class="section-desc">
+            課程以自我探索、願景承諾、團隊支持與個人突破為核心，
+            協助業務同仁建立更穩定的正向信念與行動能量。
+          </p>
+        </div>
+
+        <div class="power-grid">
+          <div class="power-card">
+            <div class="num">01</div>
+            <div class="power-icon">🧠</div>
+            <h3>認識自己</h3>
+            <p>肯定自我價值，了解自己的內在潛意識，看見改變的起點。</p>
+          </div>
+
+          <div class="power-card">
+            <div class="num">02</div>
+            <div class="power-icon">🎯</div>
+            <h3>願景力量</h3>
+            <p>建立發自內心的自我承諾，讓目標不只是壓力，更成為動力。</p>
+          </div>
+
+          <div class="power-card">
+            <div class="num">03</div>
+            <div class="power-icon">🔥</div>
+            <h3>自我激勵</h3>
+            <p>透過個人與群體支持，補充能量，建立更正向的心態。</p>
+          </div>
+
+          <div class="power-card">
+            <div class="num">04</div>
+            <div class="power-icon">⛰️</div>
+            <h3>突破心魔</h3>
+            <p>打破心靈的自我設限，挑戰更高目標，跨出改變的第一步。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journey">
+      <div class="container">
+        <div class="section-head">
+          <div class="tag">兩天一夜改變旅程</div>
+          <h2 class="section-title">
+            從探索，到承諾；<br />
+            從啟動，到突破。
+          </h2>
+          <p class="section-desc">
+            課程安排不是單點式學習，而是透過兩天一夜的節奏，
+            讓學員逐步進入狀態、深化感受，最後帶出真正的行動力量。
+          </p>
+        </div>
+
+        <div class="journey-grid">
+          <div class="day-card">
+            <div class="day-label">DAY 1｜探索日</div>
+            <h3>打開自己，找到改變的起點</h3>
+            <p>
+              從團隊連結、自我探索與改變法則開始，重新整理自己的狀態，
+              看見內在價值與尚未被啟動的力量。
+            </p>
+            <div class="course-list">
+              <span class="pill">POC一家人</span>
+              <span class="pill">改變的法則</span>
+              <span class="pill">個人突破-1</span>
+              <span class="pill">改變的步驟-1</span>
+              <span class="pill">夜間功課</span>
+            </div>
+          </div>
+
+          <div class="day-card">
+            <div class="day-label">DAY 2｜突破日</div>
+            <h3>建立承諾，帶著力量回到市場</h3>
+            <p>
+              透過改變步驟、願景承諾與突破體驗，讓改變不只停留在感受，
+              而是成為回到工作現場後可以持續前進的動能。
+            </p>
+            <div class="course-list">
+              <span class="pill">改變的步驟-2</span>
+              <span class="pill">改變的步驟-3</span>
+              <span class="pill">改變的承諾</span>
+              <span class="pill">改變的力量</span>
+              <span class="pill">個人突破-2</span>
+              <span class="pill">結訓</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="info" id="info">
+      <div class="container">
+        <div class="section-head">
+          <div class="tag">課程資訊</div>
+          <h2 class="section-title">第42期 POC活力營</h2>
+          <p class="section-desc">
+            名額有限，額滿即停止報名。歡迎有意願重新啟動自己、挑戰更高目標的業務同仁報名參加。
+          </p>
+        </div>
+
+        <div class="info-wrap">
+          <div class="edm-preview">
+            <img src="asset/poc-edm.png" alt="POC活力營完整EDM" />
+          </div>
+
+          <div class="info-panel">
+            <div class="info-item">
+              <b>課程日期</b>
+              <span>115年4月16日－4月17日，星期四、五</span>
+            </div>
+
+            <div class="info-item">
+              <b>課程時間</b>
+              <span>兩天一夜，第一天上午 9:30－10:00 報到</span>
+            </div>
+
+            <div class="info-item">
+              <b>課程地點</b>
+              <span>苗栗通霄飛牛牧場<br>苗栗縣通霄鎮南和里166號</span>
+            </div>
+
+            <div class="info-item">
+              <b>參加對象</b>
+              <span>全體業務同仁自由報名參加</span>
+            </div>
+
+            <div class="info-item">
+              <b>課程名額</b>
+              <span>以60人為限，未達20人報名將延期舉辦</span>
+            </div>
+
+            <div class="info-item">
+              <b>課程費用</b>
+              <span>原價新台幣5,000元，公司負擔50%，學員僅需新台幣2,500元</span>
+            </div>
+
+            <div class="notice">
+              報名後請依規定完成繳費，並將匯款證明黏貼單、旅平險要保人清冊寄回業務訓練部。
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="register" id="register">
+      <div class="container">
+        <div class="section-head">
+          <div class="tag">報名方式</div>
+          <h2 class="section-title">採二階段 i-study 報名</h2>
+          <p class="section-desc">
+            第一階段每一通訊處以5人為上限，第二階段開放全體同仁自由報名，剩餘名額由候補者優先錄取。
+          </p>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-no">01</div>
+            <h3>第一階段報名</h3>
+            <p>
+              即日起至3月27日開放自由報名，每一通訊處以5人為上限，超過5人者列為候補。
+            </p>
+          </div>
+
+          <div class="step">
+            <div class="step-no">02</div>
+            <h3>第二階段報名</h3>
+            <p>
+              3月30日至4月6日開放全體同仁自由報名，剩餘名額由候補者優先錄取。
+            </p>
+          </div>
+
+          <div class="step">
+            <div class="step-no">03</div>
+            <h3>完成繳費資料</h3>
+            <p>
+              i-study點選報名後，請完成報名費匯款，並盡速將相關單據正本寄回。
+            </p>
+          </div>
+        </div>
+
+        <div class="final-cta">
+          <h2>
+            Power of Change<br />
+            從你開始
+          </h2>
+          <p>
+            改變，不是等到準備好了才開始；而是從你願意跨出去的那一刻開始。
+          </p>
+          <a class="btn btn-primary" href="https://reurl.cc/EmZK3g" target="_blank" rel="noopener">
+            立即前往 i-study 報名
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      凱基人壽｜業務訓練部　｜　第42期 POC活力營
+    </footer>
+
+  </div>
+</body>
+</html>
